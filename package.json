@@ -1,0 +1,9 @@
+{
+  "name": "swippy",
+  "version": "0.0.0",
+  "description": "small library to handle swipe actions",
+  "main": "index.js",
+  "repository": "git@github.com:gh0stonio/swippy.git",
+  "author": "gh0stonio <antoine.leveque.pro@gmail.com>",
+  "license": "MIT"
+}
