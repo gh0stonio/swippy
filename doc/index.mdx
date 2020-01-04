@@ -1,0 +1,45 @@
+---
+name: Swippy
+---
+
+import { Playground, Props } from 'docz'
+import Swippy from '../src'
+import { LeftElement, MainElement, RightElement } from './dummy'
+
+# Swippy
+
+## Properties
+
+<Props of={Swippy} />
+
+## Full usage
+
+<Playground>
+  <Swippy
+    mainElement={<MainElement />}
+    renderLeftElement={isActive => <LeftElement isActive={isActive} />}
+    renderRightElement={isActive => <RightElement isActive={isActive} />}
+    leftAction={() => alert('left action triggered')}
+    rightAction={() => alert('right action triggered')}
+  />
+</Playground>
+
+## Left only
+
+<Playground>
+  <Swippy
+    mainElement={<MainElement />}
+    renderLeftElement={isActive => <LeftElement isActive={isActive} />}
+    leftAction={() => alert('left action triggered')}
+  />
+</Playground>
+
+## Right only
+
+<Playground>
+  <Swippy
+    mainElement={<MainElement />}
+    renderRightElement={isActive => <RightElement isActive={isActive} />}
+    rightAction={() => alert('right action triggered')}
+  />
+</Playground>
