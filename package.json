@@ -5,11 +5,17 @@
   "repository": "git@github.com:gh0stonio/swippy.git",
   "author": "gh0stonio <antoine.leveque.pro@gmail.com>",
   "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "commit": "git-cz",
     "dev": "docz dev",
+    "build": "tsc",
     "build-docz": "docz build",
-    "release": "bump --commit \"chore: release v%s\" --tag --push --all"
+    "release": "bump --commit \"chore: release v%s\" --tag --push --all && npm publish"
   },
   "husky": {
     "hooks": {

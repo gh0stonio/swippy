@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "target": "es2015",
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
     "moduleResolution": "node",
     "strict": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "noEmit": true,
     "jsx": "react"
-  }
+  },
+  "include": ["src"]
 }

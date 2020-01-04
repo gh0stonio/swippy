@@ -32,3 +32,6 @@ typings/
 
 # Docz files
 .docz/
+
+# build files
+dist/
