@@ -13,9 +13,10 @@
   "scripts": {
     "commit": "git-cz",
     "dev": "docz dev",
-    "build": "tsc",
-    "build-docz": "docz build",
-    "release": "bump --commit \"chore: release v%s\" --tag --push --all && npm publish"
+    "build": "yarn build-dist && yarn build-docz",
+    "build-dist": "tsc",
+    "build-docz": "docz build && cp -rf .docz/dist/* ./docs/",
+    "release": "yarn build && git add . && bump --commit \"chore: release v%s\" --tag --push --all"
   },
   "husky": {
     "hooks": {
