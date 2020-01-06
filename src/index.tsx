@@ -6,8 +6,8 @@ type Props = {
   mainElement: React.ComponentType
   leftAction?: () => void
   rightAction?: () => void
-  renderLeftElement?: (isActive?: boolean) => React.ComponentType
-  renderRightElement?: (isActive?: boolean) => React.ComponentType
+  renderLeftElement?: (isActive: boolean) => React.ReactElement
+  renderRightElement?: (isActive: boolean) => React.ReactElement
 }
 
 const Swippy: React.FC<Props> = ({ mainElement, leftAction, rightAction, renderLeftElement, renderRightElement }) => {
