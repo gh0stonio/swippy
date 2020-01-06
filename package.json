@@ -1,6 +1,6 @@
 {
   "name": "swippy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "small library to handle swipe actions",
   "repository": "git@github.com:gh0stonio/swippy.git",
   "author": "gh0stonio <antoine.leveque.pro@gmail.com>",
