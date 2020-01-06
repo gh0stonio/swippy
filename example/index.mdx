@@ -17,8 +17,8 @@ import { LeftElement, MainElement, RightElement } from './dummy'
 <Playground>
   <Swippy
     mainElement={<MainElement />}
-    renderLeftElement={isActive => <LeftElement isActive={isActive} />}
-    renderRightElement={isActive => <RightElement isActive={isActive} />}
+    renderLeftElement={(isActive, opacity) => <LeftElement isActive={isActive} opacity={opacity} />}
+    renderRightElement={(isActive, opacity) => <RightElement isActive={isActive} opacity={opacity} />}
     leftAction={() => alert('left action triggered')}
     rightAction={() => alert('right action triggered')}
   />
@@ -29,7 +29,7 @@ import { LeftElement, MainElement, RightElement } from './dummy'
 <Playground>
   <Swippy
     mainElement={<MainElement />}
-    renderLeftElement={isActive => <LeftElement isActive={isActive} />}
+    renderLeftElement={(isActive, opacity) => <LeftElement isActive={isActive} opacity={opacity} />}
     leftAction={() => alert('left action triggered')}
   />
 </Playground>
@@ -39,7 +39,7 @@ import { LeftElement, MainElement, RightElement } from './dummy'
 <Playground>
   <Swippy
     mainElement={<MainElement />}
-    renderRightElement={isActive => <RightElement isActive={isActive} />}
+    renderRightElement={(isActive, opacity) => <RightElement isActive={isActive} opacity={opacity} />}
     rightAction={() => alert('right action triggered')}
   />
 </Playground>

@@ -6,8 +6,8 @@ type Props = {
   mainElement: React.ReactElement
   leftAction?: () => void
   rightAction?: () => void
-  renderLeftElement?: (isActive: boolean) => React.ReactElement
-  renderRightElement?: (isActive: boolean) => React.ReactElement
+  renderLeftElement?: (isActive: boolean, opacity: number) => React.ReactElement
+  renderRightElement?: (isActive: boolean, opacity: number) => React.ReactElement
 }
 
 const Swippy: React.FC<Props> = ({ mainElement, leftAction, rightAction, renderLeftElement, renderRightElement }) => {
@@ -20,6 +20,8 @@ const Swippy: React.FC<Props> = ({ mainElement, leftAction, rightAction, renderL
   const [rightWidth, setRightWidth] = useState(0)
   const [isLeftActive, setIsLeftActive] = useState(false)
   const [isRightActive, setIsRightActive] = useState(false)
+  const [leftOpacity, setLeftOpacity] = useState(0)
+  const [rightOpacity, setRightOpacity] = useState(0)
 
   const leftEl = useRef<HTMLDivElement>(null)
   const rightEl = useRef<HTMLDivElement>(null)
@@ -42,6 +44,13 @@ const Swippy: React.FC<Props> = ({ mainElement, leftAction, rightAction, renderL
       if (!isTouched) return
 
       let newDelta = startDelta + (clientX - startX)
+
+      // compute opaticy percentage
+      let opacityPercent = Math.abs(1 - newDelta / startDelta)
+      if (opacityPercent > 1) opacityPercent = 1
+      if (opacityPercent < 0) opacityPercent = 0
+      if (newDelta < -leftWidth) setRightOpacity(opacityPercent)
+      else setLeftOpacity(opacityPercent)
 
       // TODO: compute active based on percent displayed ?
       if (newDelta > 0) {
@@ -68,6 +77,8 @@ const Swippy: React.FC<Props> = ({ mainElement, leftAction, rightAction, renderL
     setIsTouched(false)
     setIsLeftActive(false)
     setIsRightActive(false)
+    setLeftOpacity(0)
+    setRightOpacity(0)
   }, [isLeftActive, isRightActive, leftAction, rightAction, startDelta])
 
   const onMouseDown: MouseEventHandler = useCallback(mouseDownEvent => handleStart(mouseDownEvent.clientX), [handleStart])
@@ -91,9 +102,11 @@ const Swippy: React.FC<Props> = ({ mainElement, leftAction, rightAction, renderL
         onTouchMove={onTouchMove}
         onTouchEnd={handleEnd}
       >
-        {renderLeftElement && <SideElementWrapper ref={leftEl}>{renderLeftElement(isLeftActive)}</SideElementWrapper>}
+        {renderLeftElement && <SideElementWrapper ref={leftEl}>{renderLeftElement(isLeftActive, leftOpacity)}</SideElementWrapper>}
         <MainElementWrapper>{mainElement}</MainElementWrapper>
-        {renderRightElement && <SideElementWrapper ref={rightEl}>{renderRightElement(isRightActive)}</SideElementWrapper>}
+        {renderRightElement && (
+          <SideElementWrapper ref={rightEl}>{renderRightElement(isRightActive, rightOpacity)}</SideElementWrapper>
+        )}
       </Container>
     </Wrapper>
   )
